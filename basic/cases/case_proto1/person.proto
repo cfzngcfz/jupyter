@@ -1,0 +1,24 @@
+syntax = "proto2";
+package tutorial;
+
+message Person{
+    required string name=2;
+    required int32 age=3;
+
+    message Score{
+        required string object=1;
+        optional int32 score = 2;
+    }
+    repeated Score score=4;
+    
+    enum PhoneType{
+        MOBILE = 0;
+        WORK = 1;
+        HOME = 2;
+    }
+    message PhoneNumber{
+        required int32 phone=1;
+        optional PhoneType type=2 [default = MOBILE];
+    }
+    optional PhoneNumber number=5;
+}

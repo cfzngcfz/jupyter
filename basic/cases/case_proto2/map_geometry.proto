@@ -1,0 +1,26 @@
+syntax = "proto2";
+
+import "cases/case_proto2/geometry.proto";
+
+package apollo.hdmap;
+
+// Straight line segment.
+message LineSegment {
+  repeated apollo.common.PointENU point = 1;
+}
+
+// Generalization of a line.
+message CurveSegment {
+  oneof curve_type {
+    LineSegment line_segment = 1;
+  }
+  optional double s = 2;  // start position (s-coordinate)
+  optional apollo.common.PointENU start_position = 3;
+  optional double heading = 4;  // start orientation
+  optional double length = 5;
+}
+
+// An object similar to a line but that need not be straight.
+message Curve {
+  repeated CurveSegment segment = 1;
+}
